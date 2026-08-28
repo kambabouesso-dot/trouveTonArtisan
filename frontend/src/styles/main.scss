@@ -1,0 +1,90 @@
+// Palette de couleurs de la charte graphique "Trouve ton artisan"
+$primary: #0074c7;
+$secondary: #00497c;
+$dark: #384050;
+$danger: #cd2c2e;
+$success: #82b864;
+$light: #f1f8fc;
+
+$font-family-base: 'Graphik', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+// Mobile first : Bootstrap est déjà conçu ainsi (breakpoints min-width)
+@import "bootstrap/scss/bootstrap";
+
+body {
+  background-color: $light;
+  color: $dark;
+}
+
+a {
+  color: $primary;
+}
+
+.site-header {
+  background-color: #fff;
+  border-bottom: 1px solid rgba($dark, 0.1);
+
+  &__logo img {
+    display: block;
+  }
+
+  &__nav a {
+    color: $dark;
+    text-decoration: none;
+    font-weight: 600;
+
+    &:hover,
+    &:focus-visible {
+      color: $primary;
+    }
+  }
+}
+
+.site-footer {
+  background-color: $secondary;
+  color: #fff;
+  margin-top: auto;
+
+  a {
+    color: #fff;
+  }
+}
+
+.how-it-works__step {
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 4px rgba($dark, 0.1);
+}
+
+.how-it-works__number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  margin-bottom: 0.5rem;
+  border-radius: 50%;
+  background-color: $primary;
+  color: #fff;
+  font-weight: 700;
+}
+
+.star-rating {
+  color: rgba($dark, 0.25);
+  font-size: 1.1rem;
+
+  .star--filled {
+    color: $success;
+  }
+}
+
+.artisan-card {
+  border: 1px solid rgba($dark, 0.1);
+  color: $dark;
+  transition: box-shadow 0.15s ease-in-out;
+
+  &:hover,
+  &:focus-visible {
+    box-shadow: 0 4px 12px rgba($dark, 0.15);
+  }
+}
