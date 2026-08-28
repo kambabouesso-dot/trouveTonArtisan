@@ -42,6 +42,19 @@ npm run dev
 
 L'API démarre par défaut sur `http://localhost:3001`.
 
+#### Configuration SMTP (formulaire de contact)
+
+En développement, on utilise le **Sandbox Mailtrap** : les emails envoyés par le formulaire de
+contact sont capturés dans une boîte de test en ligne, sans jamais être livrés aux fausses
+adresses du jeu d'essai.
+
+1. Créer un compte gratuit sur https://mailtrap.io
+2. Aller dans *Email Testing* > votre inbox par défaut > *SMTP Settings*
+3. Copier `SMTP_USER` et `SMTP_PASSWORD` dans `backend/.env` (host/port déjà pré-remplis dans `.env.example`)
+4. Envoyer un message via la fiche artisan : il doit apparaître dans l'inbox Mailtrap
+
+En production, remplacer ces variables par un vrai fournisseur SMTP (Brevo, etc.).
+
 ### 3. Frontend
 
 ```bash

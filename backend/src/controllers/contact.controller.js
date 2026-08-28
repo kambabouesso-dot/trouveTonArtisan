@@ -1,5 +1,5 @@
-const nodemailer = require('nodemailer');
 const { Artisan } = require('../models');
+const transporter = require('../config/mailer');
 
 // Envoie le message du formulaire de contact à l'artisan concerné
 exports.sendContactMessage = async (req, res, next) => {
@@ -10,16 +10,6 @@ exports.sendContactMessage = async (req, res, next) => {
     }
 
     const { nom, email, objet, message } = req.body;
-
-    const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: process.env.SMTP_PORT,
-      secure: false,
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASSWORD,
-      },
-    });
 
     await transporter.sendMail({
       from: process.env.MAIL_FROM,
