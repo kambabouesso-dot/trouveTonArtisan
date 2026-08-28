@@ -25,7 +25,11 @@ docs/       Dossier de rendu (contexte, MCD/MLD, sécurité...)
 ```bash
 mysql -u root -p < database/create.sql
 mysql -u root -p < database/seed.sql
+mysql -u root -p < database/create_api_user.sql   # crée un utilisateur dédié, lecture seule pour l'API
 ```
+
+⚠️ Sur Windows, si vous utilisez PowerShell, préférez `Get-Content fichier.sql -Raw -Encoding UTF8 | mysql ...`
+plutôt qu'une redirection simple, afin d'éviter une corruption des accents (encodage UTF-8).
 
 ### 2. Backend (API)
 
@@ -54,6 +58,10 @@ Le site est accessible par défaut sur `http://localhost:5173`.
 L'accès à l'API est réservé à l'application front : chaque requête doit contenir l'en-tête
 `x-api-key` avec la valeur définie dans `API_KEY` (backend/.env). Le CORS est également
 restreint à l'origine du frontend (`FRONTEND_ORIGIN`).
+
+L'API se connecte à MySQL avec un utilisateur dédié disposant uniquement du droit `SELECT`
+(voir `database/create_api_user.sql`) : elle ne fait qu'interroger la base, conformément au
+brief (l'alimentation de la base sera assurée par une application future).
 
 ## Scripts disponibles
 
