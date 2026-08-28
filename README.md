@@ -43,6 +43,7 @@ L'API démarre par défaut sur `http://localhost:3001`.
 ```bash
 cd frontend
 npm install
+cp .env.example .env   # puis renseigner VITE_API_URL et VITE_API_KEY (même valeur que backend/.env)
 npm run dev
 ```
 
