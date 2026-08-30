@@ -3,6 +3,12 @@
 Plateforme permettant aux particuliers de la région Auvergne-Rhône-Alpes de trouver un
 artisan par catégorie/spécialité et de le contacter via un formulaire.
 
+## Liens
+
+- Site en ligne : https://trouvetonartisans-production.up.railway.app
+- Dépôt du code : https://github.com/kambabouesso-dot/trouveTonArtisan
+- Maquettes Figma et captures : https://github.com/kambabouesso-dot/trouveTonArtisanFigma
+
 ## Structure du projet
 
 ```
@@ -55,6 +61,19 @@ adresses du jeu d'essai.
 
 En production, remplacer ces variables par un vrai fournisseur SMTP (Brevo, etc.).
 
+#### Configuration Mailtrap en production (Railway)
+
+Railway peut bloquer les connexions SMTP sortantes. Le backend bascule donc automatiquement
+vers l'API HTTPS du Sandbox Mailtrap lorsque les deux variables suivantes sont définies dans
+les variables d'environnement Railway :
+
+```text
+MAILTRAP_API_TOKEN=<jeton API Mailtrap>
+MAILTRAP_INBOX_ID=<identifiant de la boîte Sandbox>
+```
+
+Ces valeurs sont des secrets : elles ne doivent jamais être ajoutées au dépôt GitHub.
+
 ### 3. Frontend
 
 ```bash
@@ -65,6 +84,27 @@ npm run dev
 ```
 
 Le site est accessible par défaut sur `http://localhost:5173`.
+
+## Déploiement
+
+L'application est déployée sur Railway avec trois services :
+
+- frontend React : site public ;
+- backend Express : API REST et formulaire de contact ;
+- MySQL : base de données accessible uniquement par le backend via le réseau privé Railway.
+
+Pour le frontend déployé, les variables de build doivent contenir :
+
+```text
+VITE_API_URL=https://trouve-ton-artisan-service-production.up.railway.app/api
+VITE_API_KEY=<même valeur que API_KEY du backend>
+```
+
+La variable `FRONTEND_ORIGIN` du backend doit contenir l'URL publique du frontend :
+
+```text
+https://trouvetonartisans-production.up.railway.app
+```
 
 ## Sécurité de l'API
 
